@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer components {
+    body {
+        @apply pt-6 text-gray-600 bg-gray-100;
+    }
+
+    .singer-image {
+        @apply rounded-full w-14 ring-2 ring-gray-500;
+    }
+}
