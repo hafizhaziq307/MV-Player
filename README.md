@@ -1,5 +1,5 @@
 # MV-Player
-Mv Player is an app that used to listen to music while managing it. Currently, it is only support .webp format.
+Mv Player is an app that used to listen to music while managing it. Currently, it is only support .webm format.
 
 <img src="./res/output.png" alt="output-mvPlayer" >
 
