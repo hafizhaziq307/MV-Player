@@ -1,8 +1,8 @@
 module.exports = {
-  mode: 'jit',
-  purge: [
-    './app/Views/**/*.php',
-    './app/Views/**/*.html'
+  content: [
+    "./resources/**/*.blade.php",
+    "./resources/**/*.js",
+    "./resources/**/*.vue",
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
@@ -11,7 +11,5 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [
-    require('@tailwindcss/line-clamp'),
-  ],
+  plugins: [],
 }
