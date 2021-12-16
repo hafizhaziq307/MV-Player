@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MusicController;
 use App\Http\Controllers\SingerController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ThumbnailController;
 
 Route::get('/', [PageController::class, 'home'])->name('home');
 
@@ -32,4 +33,13 @@ Route::group(['prefix' => 'musics'], function () {
 
     Route::patch('/{singer}/{music}', [MusicController::class, 'update'])->name('musics.update');
     Route::delete('/{singer}/{music}', [MusicController::class, 'destroy'])->name('musics.destroy');
+});
+
+
+/**
+ * thumbnail route
+ */
+Route::group(['prefix' => 'thumbnails'], function () {
+    Route::get('/{singer}/{music}/edit', [ThumbnailController::class, 'create'])->name('thumbnails.create');
+    Route::post('/', [ThumbnailController::class, 'store'])->name('thumbnails.store');
 });

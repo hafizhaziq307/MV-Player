@@ -33,11 +33,11 @@
                     </header>
 
                     <!-- card body -->
-                    <div class="grid grid-cols-4 gap-6 pt-2">
+                    <div class="grid grid-cols-2 sm:grid-cols-3  md:grid-cols-4 gap-6 pt-2">
                         @forelse ($singer->musics as $music)
                             <!-- music card -->
                             <a href="{{ route('musics.edit', ['music' => $music->name, 'singer' => $singer->name]) }}">
-                                <article @click="setVideo(music.video)"
+                                <article
                                     class="relative flex-none block w-full rounded-md shadow-md cursor-pointer select-none aspect-video group ring-1 ring-gray-200">
                                     <!-- card image -->
                                     <img src="{{ $music->thumbnail }}" alt="img"

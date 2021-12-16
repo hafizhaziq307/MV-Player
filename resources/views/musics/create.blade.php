@@ -10,18 +10,17 @@
             @csrf
 
             <!-- file -->
-            <div class="p-3 space-y-2 bg-white rounded-md shadow-lg ring-1 ring-gray-200">
+            <div class="card space-y-2">
                 <!-- container header -->
                 <div class="mb-1 text-sm font-bold text-gray-500 ">Music file</div>
 
                 <div>
-                    <input type="file" name="file" accept="video/webm"
-                        class="file:cursor-pointer file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-blue-50 file:text-blue-700 hover:file:bg-blue-100">
+                    <input type="file" name="file" accept="video/webm" class="input-file">
                 </div>
             </div>
 
             <!-- title -->
-            <div class="p-3 space-y-2 bg-white rounded-md shadow-lg ring-1 ring-gray-200">
+            <div class="card space-y-2">
                 <!-- container header -->
                 <div class="mb-1 text-sm font-bold text-gray-500 ">Title</div>
 
@@ -52,7 +51,7 @@
             </div>
 
             <div class="flex justify-end">
-                <button class="px-4 py-2 font-semibold text-gray-100 bg-blue-600 rounded-md" type="submit">SAVE</button>
+                <button class="btn bg-blue-600 hover:bg-blue-700" type="submit">SAVE</button>
             </div>
         </form>
     </main>
