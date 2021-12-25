@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+
+    @if (session('msg') != '')
+        <x-toast message="{{ session('msg') }}" />
+    @endif
+
     <main class="max-w-5xl mx-auto space-y-4 ">
 
         <!-- header -->
@@ -24,7 +29,7 @@
             @forelse ($singers as $singer)
                 <a href="{{ route('singers.edit', ['singer' => $singer->name]) }}"
                     class="flex items-center w-full p-2 space-x-2 transition transform bg-white rounded-lg shadow-md hover:scale-105 hover:text-black">
-                    <img src="{{ $singer->profile }}" alt="img" class="singer-image">
+                    <img src="{{ $singer->profile }}" alt="img" class="singer-image rounded-full">
                     <p class="text-lg font-bold">{{ $singer->name }}</p>
                 </a>
             @empty

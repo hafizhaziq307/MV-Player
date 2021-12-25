@@ -12,13 +12,19 @@ class MusicController extends Controller
         $this->Singer = new Singer;
     }
 
+    /**
+     * Index music page
+     */
     public function index()
     {
         $singers = $this->Singer->getSingerswithMusics();
+
         return view('musics.index', compact('singers'));
     }
 
-
+    /**
+     * Create music page
+     */
     public function create()
     {
         return view('musics/create', [
@@ -26,7 +32,19 @@ class MusicController extends Controller
         ]);
     }
 
+    /**
+     * Edit music page
+     */
+    public function edit($musicName, $singerName)
+    {
+        return view('musics/edit', [
+            'singer' => $this->Singer->getSingerwithMusic($singerName, $musicName),
+        ]);
+    }
 
+    /**
+     * Store new music
+     */
     public function store(Request $request)
     {
         $singer = $request->input('singer');
@@ -43,18 +61,14 @@ class MusicController extends Controller
 
         copy(public_path() . "/images/default-thumbnail.jpg", public_path() . "/file/$singer/songs/$name/$name.jpg");
 
-        return redirect()->route('musics.index');
+        return redirect()
+            ->route('musics.index')
+            ->with("msg", "Music Created Successfully.");
     }
 
-
-    public function edit($musicName, $singerName)
-    {
-        return view('musics/edit', [
-            'singer' => $this->Singer->getSingerwithMusic($singerName, $musicName),
-        ]);
-    }
-
-
+    /**
+     * Update existing music
+     */
     public function update(Request $request, $singerName, $musicName)
     {
         $newName = ucwords(strtolower($request->input('newName')));
@@ -74,10 +88,15 @@ class MusicController extends Controller
 
         rename(public_path() . "/file/$singerName/songs/$musicName", public_path() . "/file/$singerName/songs/$newName");
 
-        return redirect()->route('musics.index');
+        return redirect()
+            ->route('musics.index')
+            ->with("msg", "Music Updated Successfully.");
     }
 
 
+    /**
+     * Delete existing music
+     */
     public function destroy($singerName, $musicName)
     {
         array_map(function ($val) {
@@ -86,6 +105,8 @@ class MusicController extends Controller
 
         rmdir(public_path() . "/file/$singerName/songs/$musicName");
 
-        return redirect()->route('musics.index');
+        return redirect()
+            ->route('musics.index')
+            ->with("msg", "Music Deleted Successfully.");
     }
 }

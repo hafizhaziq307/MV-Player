@@ -23,6 +23,7 @@
 
         <form action="{{ route('musics.update', ['music' => $singer->music->name, 'singer' => $singer->name]) }}"
             method="POST">
+            @method('patch')
             @csrf
             <!-- title music container -->
             <div class="card space-y-2">
@@ -43,7 +44,9 @@
         </form>
 
 
-        <form action="" method="POST">
+        <form action="{{ route('musics.destroy', ['music' => $singer->music->name, 'singer' => $singer->name]) }}"
+            method="POST">
+            @method('delete')
             @csrf
             <!-- delete container -->
             <div class="flex items-center justify-end p-3 bg-white rounded-md shadow-lg ring-1 ring-gray-200">

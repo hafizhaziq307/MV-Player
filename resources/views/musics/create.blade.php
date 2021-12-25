@@ -37,10 +37,10 @@
                     @foreach ($singers as $key => $singer)
                         <article>
                             <input type="radio" name="singer" value="{{ $singer->name }}" id="{{ $key }}"
-                                class="hidden peer">
+                                class="peer" hidden>
 
                             <label for="{{ $key }}"
-                                class="flex items-center p-2 space-x-2 bg-white rounded-md shadow-md cursor-pointer select-none ring-2 ring-gray-200 peer-checked:bg-blue-700 peer-checked:text-white group">
+                                class="flex items-center p-2 space-x-2 bg-white rounded-md shadow-md cursor-pointer select-none ring-2 ring-gray-200 peer-checked:bg-blue-700 peer-checked:text-white">
                                 <img src="{{ $singer->profile }}" alt="img"
                                     class="object-cover w-16 rounded-full aspect-square ring-2 ring-white">
                                 <p class="font-bold sm:text-lg">{{ $singer->name }}</p>

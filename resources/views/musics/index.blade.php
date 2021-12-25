@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+
+    @if (session('msg') != '')
+        <x-toast message="{{ session('msg') }}" />
+    @endif
+
     <main class="max-w-5xl mx-auto space-y-4 ">
 
         <!-- header -->

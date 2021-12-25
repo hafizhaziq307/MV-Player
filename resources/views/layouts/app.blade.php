@@ -114,7 +114,7 @@
     </div>
 
     <!-- import alpine js -->
-    <script defer src="https://unpkg.com/alpinejs@3.7.0/dist/cdn.min.js"></script>
+    <script defer src="{{ asset('./js/alpinejs@3.7.1/min.js') }}"></script>
 </body>
 
 </html>
