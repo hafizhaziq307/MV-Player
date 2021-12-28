@@ -33,12 +33,12 @@ class Singer extends Model
 
     public function getSingerwithMusic($singerName, $musicName): object
     {
-        $musicModel = new Music;
+        $Music = new Music;
 
         $singer = new stdClass;
         $singer->name = $singerName;
         $singer->profile = "/file/$singerName/profile.jpg";
-        $singer->music = $musicModel->getMusic($singerName, $musicName);
+        $singer->music = $Music->getMusic($singerName, $musicName);
 
         return $singer;
     }

@@ -71,7 +71,7 @@ class MusicController extends Controller
      */
     public function update(Request $request, $singerName, $musicName)
     {
-        $newName = ucwords(strtolower($request->input('newName')));
+        $newName = ucwords(strtolower($request->input('newname')));
 
         array_map(
             function ($val) use ($singerName, $musicName, $newName) {

@@ -32,8 +32,6 @@ class SingerController extends Controller
         $name = ucwords(strtolower($request->input('name')));
         $file = $request->file('profile');
 
-        // dd($request->file('profile')->storeAs('file', 'profile.jpg'));
-
         chdir('file');
 
         if (!file_exists($name)) {
@@ -42,7 +40,9 @@ class SingerController extends Controller
             mkdir('songs');
             $file->move(public_path() . "/file/$name", 'profile.jpg');
         }
-        return redirect()->route('singers.index');
+        return redirect()
+            ->route('singers.index')
+            ->with("msg", "Singer Created Successfully.");
     }
 
 
@@ -58,16 +58,18 @@ class SingerController extends Controller
     {
         switch ($request->input('type')) {
             case 'name':
-                $newName = ucwords(strtolower($request->input('newName')));
-                rename(public_path() . "singers/$name", public_path() . "singers/$newName");
+                $newName = ucwords(strtolower($request->input('newname')));
+                rename(public_path() . "/file/$name", public_path() . "/file/$newName");
                 break;
 
-            case 'profile':
+            case 'image':
                 $file = $request->file('profile');
-                $file->move(public_path() . "singers/$name", "profile.jpg", true);
+                $file->move(public_path() . "/file/$name", "profile.jpg", true);
                 break;
         }
-        return redirect()->route('singer_index');
+        return redirect()
+            ->route('singers.index')
+            ->with("msg", "Singer Updated Successfully.");
     }
 
 
@@ -80,22 +82,24 @@ class SingerController extends Controller
                 // remove content inside music direetory
                 array_map(function ($content) {
                     unlink($content);
-                }, glob(public_path() . "singers/$name/songs/$directory/*.*"));
+                }, glob(public_path() . "/file/$name/songs/$directory/*.*"));
 
-                rmdir(public_path() . "singers/$name/songs/$directory");
+                rmdir(public_path() . "/file/$name/songs/$directory");
             },
-            array_values(array_diff(scandir(public_path() . "singers/$name/songs"), array('..', '.')))
+            array_values(array_diff(scandir(public_path() . "/file/$name/songs"), array('..', '.')))
         );
 
         // remove profile
-        unlink(public_path() . "singers/$name/profile.jpg");
+        unlink(public_path() . "/file/$name/profile.jpg");
 
         // remove songs directory
-        rmdir(public_path() . "singers/$name/songs");
+        rmdir(public_path() . "/file/$name/songs");
 
         //remove singer directory
-        rmdir(public_path() . "singers/$name");
+        rmdir(public_path() . "/file/$name");
 
-        return redirect()->route('singer_index');
+        return redirect()
+            ->route('singers.index')
+            ->with("msg", "Singer Deleted Successfully.");
     }
 }

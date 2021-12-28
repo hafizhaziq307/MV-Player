@@ -10,7 +10,7 @@
 
         <!-- header -->
         <header class="flex justify-between">
-            <p class="text-2xl font-bold">Musics</p>
+            <p class="text-2xl font-bold">Singers</p>
 
             @if (!empty($singers))
                 <a href="{{ route('singers.create') }}"
@@ -28,8 +28,9 @@
         <div class="space-y-4">
             @forelse ($singers as $singer)
                 <a href="{{ route('singers.edit', ['singer' => $singer->name]) }}"
-                    class="flex items-center w-full p-2 space-x-2 transition transform bg-white rounded-lg shadow-md hover:scale-105 hover:text-black">
-                    <img src="{{ $singer->profile }}" alt="img" class="singer-image rounded-full">
+                    class="flex items-center w-full p-2 space-x-2 transition transform bg-white rounded shadow-md hover:scale-105 hover:text-black">
+                    <img src="{{ $singer->profile }}" alt="img"
+                        class="w-20 aspect-square rounded-full ring-1 ring-gray-200">
                     <p class="text-lg font-bold">{{ $singer->name }}</p>
                 </a>
             @empty
